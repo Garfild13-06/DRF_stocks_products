@@ -10,12 +10,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class ProductPositionSerializer(serializers.ModelSerializer):
-    # настройте сериализатор для позиции продукта на складе
-
-    # product = serializers.PrimaryKeyRelatedField(
-    #     queryset=Product.objects.all(),
-    # )
-
     class Meta:
         model = StockProduct
         fields = ['product', 'quantity', 'price']
@@ -27,8 +21,6 @@ class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
         fields = ['id', 'address', 'positions']
-
-    # настройте сериализатор для склада
 
     def create(self, validated_data):
         positions = validated_data.pop('positions')
