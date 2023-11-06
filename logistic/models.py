@@ -3,11 +3,13 @@ from django.db import models
 
 
 class Product(models.Model):
+    # Продукты
     title = models.CharField(max_length=60, unique=True)
     description = models.TextField(null=True, blank=True)
 
 
 class Stock(models.Model):
+    # Склады
     address = models.CharField(max_length=200, unique=True)
     products = models.ManyToManyField(
         Product,
@@ -17,6 +19,7 @@ class Stock(models.Model):
 
 
 class StockProduct(models.Model):
+    # Продукты на складе
     stock = models.ForeignKey(
         Stock,
         on_delete=models.CASCADE,
